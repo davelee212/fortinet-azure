@@ -1,0 +1,78 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "FortiGateNamePrefix": {
+            "value": "FGT"
+        },
+        "adminUsername": {
+            "value": "fortiadmin"
+        },
+        "adminPassword": {
+            "value": null
+        },
+        "FortiGateImageSKU": {
+            "value": "fortinet_fg-vm"
+        },
+        "FortiGateImageVersion": {
+            "value": "6.0.0"
+        },
+        "instanceType": {
+            "value": "Standard_F2s"
+        },
+        "publicIPAddressName": {
+            "value": "FortiGate-LB-PublicIP-A"
+        },
+        "publicIPAddress2Name": {
+            "value": "FortiGate-LB-PublicIP-B"
+        },
+        "publicIPAddressType": {
+            "value": "Static"
+        },
+        "publicIPNewOrExistingOrNone": {
+            "value": "new"
+        },
+        "publicIP2NewOrExistingOrNone": {
+            "value": "new"
+        },
+        "publicIPAddressResourceGroup": {
+            "value": "fortinet"
+        },
+        "publicIPAddress2ResourceGroup": {
+            "value": "fortinet"
+        },
+        "fortiGateIP1": {
+            "value": "10.1.0.4"
+        },
+        "fortiGateIP2": {
+            "value": "10.1.1.4"
+        },
+        "location": {
+            "value": "northeurope"
+        },
+        "vnetNewOrExisting": {
+            "value": "new"
+        },
+        "vnetName": {
+            "value": "FortigateProtectedVNet"
+        },
+        "vnetResourceGroup": {
+            "value": "fortinet"
+        },
+        "vnetAddressPrefix": {
+            "value": "10.1.0.0/16"
+        },
+        "Subnet1Name": {
+            "value": "PublicFacingSubnet"
+        },
+        "Subnet1Prefix": {
+            "value": "10.1.0.0/24"
+        },
+        "Subnet2Name": {
+            "value": "FortigateProtectedSubnet"
+        },
+        "Subnet2Prefix": {
+            "value": "10.1.1.0/24"
+        }
+    }
+}
