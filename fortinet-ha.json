@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "type": "String",
+            "type": "string",
             "defaultValue": "UKSouth",
             "allowedValues": [
                 "UKSouth",
@@ -15,20 +15,20 @@
             }
         },
         "adminUsername": {
-            "type": "String",
+            "type": "string",
             "defaultValue": "rmsadmin",
             "metadata": {
                 "description": "Admin username (rmsadmin is not specified)"
             }
         },
         "adminPassword": {
-            "type": "SecureString",
+            "type": "securestring",
             "metadata": {
                 "description": "Password for the Virtual Machine."
             }
         },
         "CustomerCRMID": {
-            "type": "String",
+            "type": "string",
             "maxLength": 5,
             "minLength": 5,
             "metadata": {
@@ -41,7 +41,7 @@
                 "fortinet_fg-vm",
                 "fortinet_fg-vm_payg"
             ],
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Identifies whether to to use PAYG (on demand licensing) or BYOL license model (where license is purchased separately)"
             }
@@ -55,14 +55,14 @@
                 "6.0.0",
                 "latest"
             ],
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "5.6.3 is latest version for BYOL and PAYG; 5.2.9 is previous BYOL only"
             }
         },
         "instanceType": {
             "defaultValue": "Standard_F1",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Virtual Machine size selection"
             }
@@ -73,7 +73,7 @@
                 "new",
                 "existing"
             ],
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Identify if to use a public IP, and if so whether it's new"
             }
@@ -84,20 +84,9 @@
                 "new",
                 "existing"
             ],
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Whether to use a public IP and if so whether it is new"
-            }
-        },
-        "publicIPAddressType": {
-            "defaultValue": "Static",
-            "allowedValues": [
-                "Dynamic",
-                "Static"
-            ],
-            "type": "String",
-            "metadata": {
-                "description": "Type of public IP address"
             }
         },
         "vnetNewOrExisting": {
@@ -106,63 +95,63 @@
                 "new",
                 "existing"
             ],
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Identify whether to use a new or existing vnet"
             }
         },
         "vnetAddressPrefix": {
             "defaultValue": "10.0.0.0/16",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Virtual Network Address prefix"
             }
         },
         "Subnet1Name": {
             "defaultValue": "FWExternalSubnet",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Subnet 1 Name"
             }
         },
         "Subnet2Name": {
             "defaultValue": "FWTransitSubnet",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Subnet 2 Name"
             }
         },
         "subnet2LoadBalancerIP": {
             "defaultValue": "10.0.2.10",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Static IP for protected network facing frontend of the internal load balancer."
             }
         },
         "Subnet3Name": {
             "defaultValue": "ProtectedSubnet",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Subnet 3 Name"
             }
         },
         "Subnet1Prefix": {
             "defaultValue": "10.0.1.0/24",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Subnet 1 Prefix"
             }
         },
         "Subnet2Prefix": {
             "defaultValue": "10.0.2.0/24",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Subnet 2 Prefix"
             }
         },
         "Subnet3Prefix": {
             "defaultValue": "10.0.3.0/24",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Subnet 2 Prefix"
             }
@@ -171,11 +160,11 @@
             "defaultValue": {
                 "provider": "6EB3B02F-50E5-4A3E-8CB8-2E129258317D"
             },
-            "type": "Object"
+            "type": "object"
         },
         "artifactsBaseUrl": {
             "defaultValue": "https://raw.githubusercontent.com/fortinetclouddev/FortiGate-HA-for-Azure/EastWestHA2.1",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Base URL of the solution template gallery package",
                 "artifactsBaseUrl": ""
@@ -232,7 +221,8 @@
         "updateIPURI": "[concat(parameters('artifactsBaseURL'),'/update-nic.json')]",
         "publicIPAddressName": "[concat('NET',parameters('CustomerCRMID'),'AZFW-PIP1')]",
         "publicIPAddress2Name": "[concat('NET',parameters('CustomerCRMID'),'AZFW-PIP2')]",
-        "vnetName": "[concat(variables('FortiGateNamePrefix'),'VNET01')]"
+        "vnetName": "[concat(variables('FortiGateNamePrefix'),'VNET01')]",
+        "publicIPAddressType": "static"
 
     },
     "resources": [
@@ -354,7 +344,7 @@
                             "probe": {
                                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('internalLBName')), '/probes/lbprobe')]"
                             },
-                            "protocol": "all",
+                            "protocol": "All",
                             "frontendPort": 0,
                             "backendPort": 0,
                             "enableFloatingIP": true,
